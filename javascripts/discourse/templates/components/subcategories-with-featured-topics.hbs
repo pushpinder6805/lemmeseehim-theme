@@ -18,9 +18,8 @@
 						</div>
 					</a>
 					<span class="stat" title="{{category.statTitle}}">
-    {{html-safe category.stat}}
-</span>
-
+						{{html-safe category.stat}}
+					</span>
 				</th>
 				<th class="topics">{{i18n "categories.topics"}}</th>
 				<th class="replies">{{i18n "replies"}}</th>
@@ -43,7 +42,7 @@
 							</div>
 							{{#if subCategory.description_excerpt}}
 								<div class="category-description">
-									{{dir-span subCategory.description_excerpt}}
+									{{html-safe subCategory.description_excerpt}}
 								</div>
 							{{/if}}
 						</a>
@@ -64,19 +63,28 @@
 					</td>
 
 					<td class="latest">
-						{{#if subCategory.topics.length}}
-							{{#each subCategory.topics as |topic|}}
-								<div class="featured-topic">
-									<span class="categories-latest-topic-avatar">
-										<a href="/u/{{topic.last_poster.username}}" data-user-card="{{topic.last_poster.username}}">
-											{{avatar topic.last_poster imageSize="small"}}
+						{{#if subCategory.topics}}
+							{{#if subCategory.topics.length}}
+								{{#each subCategory.topics as |topic|}}
+									<div class="featured-topic">
+										<span class="categories-latest-topic-avatar">
+											<a href="/u/{{topic.last_poster.username}}" data-user-card="{{topic.last_poster.username}}">
+												{{avatar topic.last_poster imageSize="small"}}
+											</a>
+										</span>
+										<a class="title" href="/t/{{topic.slug}}/{{topic.id}}">
+											{{topic.title}}
 										</a>
-									</span>
-									<FeaturedTopic @topic={{topic}} />
-								</div>
-							{{/each}}
+										<a class="last-posted-at" href="/t/{{topic.slug}}/{{topic.id}}">
+											<span class="relative-date" data-time="{{topic.last_posted_at}}" data-format="tiny"></span>
+										</a>
+									</div>
+								{{/each}}
+							{{else}}
+								<li class="empty-topic">No topics available</li>
+							{{/if}}
 						{{else}}
-							<li class="empty-topic"></li>
+							<li class="empty-topic">No topics available</li>
 						{{/if}}
 					</td>
 				</tr>

@@ -6,15 +6,11 @@
 		outletArgs=(hash category=this.category)
 	}}
 	<tr
-		data-category-id={{this.category.id}}
-		data-notification-level={{this.category.notificationLevelString}}
-		class="{{if
-			this.category.description_excerpt
-			"has-description"
-			"no-description"
-		}}
-		{{if this.category.uploaded_logo.url "has-logo" "no-logo"}}
-		{{if this.category.subcategories "has-subcategories" ""}}"
+		data-category-id="{{this.category.id}}"
+		data-notification-level="{{this.category.notificationLevelString}}"
+		class="{{if this.category.description_excerpt "has-description" "no-description"}}
+			   {{if this.category.uploaded_logo.url "has-logo" "no-logo"}}
+			   {{if this.category.subcategories "has-subcategories" ""}}"
 	>
 		<td
 			class="category
@@ -30,16 +26,16 @@
 				{{category-title-link category=this.category}}
 				{{#if this.category.description_excerpt}}
 					<div class="category-description">
-						{{dir-span this.category.description_excerpt}}
+						{{html-safe this.category.description_excerpt}}
 					</div>
 				{{/if}}
 			</a>
 		</td>
 		
 		<td class="topics">
-			<div title={{this.category.topic_count}}>
+			<div title="{{this.category.topic_count}}">
 				{{d-icon "comments"}}
-				{{number this.category.topic_count}}
+				<span class="number">{{this.category.topic_count}}</span>
 			</div>
 			{{category-unread category=this.category tagName="div" class="unread-new"}}
 		</td>
@@ -47,28 +43,34 @@
 		<td class="replies">
 			<div title="post count">
 				{{d-icon "reply"}}
-				{{number this.category.post_count}}
+				<span class="number">{{this.category.post_count}}</span>
 			</div>
 		</td>
 		
 		{{#if this.showTopics}}
 			<td class="latest">
-				{{#if this.category.topics.length}}
-					{{#each this.category.topics as |topic|}}
-					<div class="featured-topic">
-						<span class="categories-latest-topic-avatar">
-							<a
-								href="/u/{{topic.last_poster.username}}"
-								data-user-card={{topic.last_poster.username}}
-							>
-								{{avatar topic.last_poster imageSize="small"}}
-							</a>
-						</span>
-						<FeaturedTopic @topic={{topic}} />
-					</div>
-					{{/each}}
+				{{#if this.category.topics}}
+					{{#if this.category.topics.length}}
+						{{#each this.category.topics as |topic|}}
+							<div class="featured-topic">
+								<span class="categories-latest-topic-avatar">
+									<a href="/u/{{topic.last_poster.username}}" data-user-card="{{topic.last_poster.username}}">
+										{{avatar topic.last_poster imageSize="small"}}
+									</a>
+								</span>
+								<a class="title" href="/t/{{topic.slug}}/{{topic.id}}">
+									{{topic.title}}
+								</a>
+								<a class="last-posted-at" href="/t/{{topic.slug}}/{{topic.id}}">
+									<span class="relative-date" data-time="{{topic.last_posted_at}}" data-format="tiny"></span>
+								</a>
+							</div>
+						{{/each}}
+					{{else}}
+						<li class="empty-topic">No topics available</li>
+					{{/if}}
 				{{else}}
-					<li class="empty-topic"></li>
+					<li class="empty-topic">No topics available</li>
 				{{/if}}
 			</td>
 		{{/if}}
