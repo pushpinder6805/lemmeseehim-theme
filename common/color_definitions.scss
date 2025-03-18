@@ -1,0 +1,26 @@
+$thin-shadow: 0 0 1px #0000001a, 0 1px 2px 0 #0000001a;
+
+$card-shadow-light: $thin-shadow, 0px 20px 60px #00000015;
+$card-shadow-dark: $thin-shadow, 0 4px 5px #0003;
+$card-shadow: dark-light-choose($card-shadow-light, $card-shadow-dark);
+
+$card-shadow-h-light: $thin-shadow, 0 4px 5px #0003;
+$card-shadow-h-dark: $thin-shadow, -1px 1px 1px 1px rgba(var(--tertiary-rgb),0.5);
+$card-shadow-hover:	dark-light-choose($card-shadow-h-light, $card-shadow-h-dark);
+
+$card-blur: dark-light-choose(blur(8px), blur(16px));
+
+$card-bg: dark-light-choose(darken($secondary, 5%), lighten($secondary, 5%));
+$card-bg-opacify: dark-light-choose(0.65, 0.4);
+
+$thead-bg: dark-light-choose(darken($secondary, 5%), lighten($secondary, 5%));
+
+:root {
+  --card-shadow: #{$card-shadow};
+  --thin-shadow: #{$thin-shadow};
+  --card-shadow-hover: #{$card-shadow-hover};
+  --card-blur: #{$card-blur};
+  --card-bg: #{$card-bg};
+  --card-bg-opacify: #{$card-bg-opacify};
+  --thead-bg: #{$thead-bg};
+}

@@ -1,0 +1,107 @@
+{{#if sidebarSettings.[0]}}
+	<input type="checkbox" id="sailpoint-sidebar__switch"/>
+	<label class="sailpoint-sidebar__toggle" for="sailpoint-sidebar__switch"></label>
+
+	<div class="sailpoint-sidebar">
+		{{#each sidebarSettings as |sbItem i|}}
+			<input type="checkbox" id="sb-toggle-{{i}}-{{sbItem.name}}"/>
+			<li
+				class="site-menu__list-item
+					{{if sbItem.[is this a dropdown?]
+						(if sbItem.[is this dropdown always open?] 'sb-title' 'sb-toggle')
+					}}
+				"
+			>
+				{{#if sbItem.link}}
+					<a class="site-menu__list-link {{if sbItem.[external?] 'sb-ext-link'}}" href="{{sbItem.link}}">
+						{{#if sbItem.icon}} {{d-icon sbItem.icon}} {{/if}}
+						{{sbItem.name}}
+					</a>
+				{{else}}
+					<a class="site-menu__list-link">
+						{{#if sbItem.icon}} {{d-icon sbItem.icon}} {{/if}}
+						{{sbItem.name}}
+					</a>
+				{{/if}}
+				<label for="sb-toggle-{{i}}-{{sbItem.name}}"></label>
+			</li>
+			{{#if sbItem.[is this a dropdown?]}}
+				<ul class="site-menu__list">
+					{{#each sbItem.[upper submenu] as |sbItem i|}}
+						<input type="checkbox" id="sb-toggle-{{i}}-{{sbItem.name}}"/>
+						<li
+							class="
+								site-menu__list-item
+								{{if sbItem.[is this a dropdown?]
+									(if sbItem.[is this dropdown always open?] 'sb-title' 'sb-toggle')
+								}}
+							"
+						>
+							{{#if sbItem.link}}
+								<a class="site-menu__list-link {{if sbItem.[external?] 'sb-ext-link'}}" href="{{sbItem.link}}">
+									{{#if sbItem.icon}} {{d-icon sbItem.icon}} {{/if}}
+									{{sbItem.name}}
+								</a>
+							{{else}}
+								<a class="site-menu__list-link">
+									{{#if sbItem.icon}} {{d-icon sbItem.icon}} {{/if}}
+									{{sbItem.name}}
+								</a>
+							{{/if}}
+							<label for="sb-toggle-{{i}}-{{sbItem.name}}"></label>
+						</li>
+						{{#if sbItem.[is this a dropdown?]}}
+							<ul class="site-menu__list">
+								{{#each sbItem.[middle submenu] as |sbItem i|}}
+									<input type="checkbox" id="sb-toggle-{{i}}-{{sbItem.name}}"/>
+									<li
+										class="
+											site-menu__list-item
+											{{if sbItem.[is this a dropdown?]
+												(if sbItem.[is this dropdown always open?] 'sb-title' 'sb-toggle')
+											}}
+										"
+									>
+										{{#if sbItem.link}}
+											<a class="site-menu__list-link {{if sbItem.[external?] 'sb-ext-link'}}" href="{{sbItem.link}}">
+												{{#if sbItem.icon}} {{d-icon sbItem.icon}} {{/if}}
+												{{sbItem.name}}
+											</a>
+										{{else}}
+											<a class="site-menu__list-link">
+												{{#if sbItem.icon}} {{d-icon sbItem.icon}} {{/if}}
+												{{sbItem.name}}
+											</a>
+										{{/if}}
+										<label for="sb-toggle-{{i}}-{{sbItem.name}}"></label>
+									</li>
+									{{#if sbItem.[is this a dropdown?]}}
+										<ul class="site-menu__list">
+											{{#each sbItem.[lower submenu] as |sbItem i|}}
+												<li
+													class="site-menu__list-item"
+												>
+													{{#if sbItem.link}}
+														<a class="site-menu__list-link {{if sbItem.[external?] 'sb-ext-link'}}" href="{{sbItem.link}}">
+															{{#if sbItem.icon}} {{d-icon sbItem.icon}} {{/if}}
+															{{sbItem.name}}
+														</a>
+													{{else}}
+														<a class="site-menu__list-link">
+															{{#if sbItem.icon}} {{d-icon sbItem.icon}} {{/if}}
+															{{sbItem.name}}
+														</a>
+													{{/if}}
+												</li>
+											{{/each}}
+										</ul>
+									{{/if}}
+								{{/each}}
+							</ul>
+						{{/if}}
+					{{/each}}
+				</ul>
+			{{/if}}
+		{{/each}}
+	</div>
+{{/if}}

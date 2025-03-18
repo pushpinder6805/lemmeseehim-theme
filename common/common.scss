@@ -1,0 +1,213 @@
+@import "header";
+@import "topic-list";
+@import "topic-post";
+@import "category-list";
+@import "sidebar";
+@import "card-component";
+
+:root {
+  --d-max-width: 1180px;
+  --font-family: Poppins, Arial, sans-serif;
+  --heading-font-family: Poppins, Arial, sans-serif;
+  --d-border-radius: 1.5rem;
+  --d-nav-pill-border-radius: 5px;
+  --d-button-border-radius: 5px;
+  --d-input-border-radius: 5px;
+  --gradient: linear-gradient(
+    145deg,
+    rgba(0, 51, 161, 1) 40%,
+    rgba(0, 79, 181, 1) 65%,
+    rgba(0, 113, 206, 1) 100%
+  );
+  --extra-padding: 2em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+body {
+  background-color: var(--header_background);
+}
+
+#main-outlet-wrapper {
+  margin-inline: 2em;
+}
+
+// NAV
+
+body.has-sidebar header .wrap {
+  max-width: calc(var(--d-max-width) + 320px);
+}
+
+.select-kit .select-kit-header {
+  font-size: 1em;
+}
+
+.list-controls .combo-box .combo-box-header {
+  border: 2px solid var(--primary-400);
+}
+.nav-pills > li a,
+.nav-pills > li button {
+  font-size: 1em;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+
+  &.active {
+    color: var(--quaternary);
+    background: transparent !important;
+    border-bottom: 4px solid var(--quaternary);
+    border-radius: 0;
+  }
+}
+
+// BUTTONS
+
+.btn:focus {
+  background-color: var(--tertiary-very-low);
+  &,
+  .d-icon {
+    color: var(--primary);
+  }
+}
+
+.btn-primary {
+  background-color: var(--quaternary);
+
+  &:hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+}
+
+.btn-default:not(summary) {
+  font-size: 1em;
+  display: inline-flex;
+  background-color: transparent;
+  padding: 0.2em 1em;
+
+  &:not(.btn-icon) {
+    color: var(--quaternary);
+    border: 2px solid var(--quaternary) !important;
+
+    & > .d-icon,
+    .svg-icon,
+    .d-button-label {
+      color: var(--quaternary);
+    }
+
+    &.active,
+    &:hover {
+      font-weight: 500;
+      color: var(--secondary);
+      background-color: var(--quaternary) !important;
+      box-shadow: var(--card-shadow-hover);
+
+      & > .d-icon,
+      .svg-icon,
+      .d-button-label {
+        color: var(--secondary);
+      }
+    }
+  }
+}
+
+.select-kit.single-select.is-expanded .select-kit-header:not(.btn),
+.select-kit.single-select .select-kit-header:not(.btn):focus,
+.select-kit.single-select .select-kit-header:not(.btn):active {
+  outline: none;
+}
+// TOP LIST
+
+.select-kit.dropdown-select-box.period-chooser .btn.period-chooser-header {
+  &:hover {
+    background-color: transparent !important;
+    box-shadow: none;
+  }
+
+  h2.selected-name .top-date-string {
+    text-transform: capitalize;
+  }
+}
+
+// SETTINGS
+
+.settings .setting.overridden input {
+  background-color: var(--highlight-low);
+}
+
+.admin-customize .current-style {
+  .edit-main-nav .nav-pills > li a.active,
+  .nav-pills li a.active {
+    color: var(--quaternary);
+  }
+}
+
+// blog post styling
+
+.category-blog .topic-post {
+  background-color: var(--secondary);
+}
+
+// hide about page details from non-admins
+
+body:not(.staff) {
+  section.about.stats {
+    display: none;
+  }
+
+  .about {
+    &.admins,
+    &.moderators {
+      display: none;
+    }
+  }
+}
+
+// hide topic thumbnails within posts
+
+div[data-wrap="hidden"] {
+  display: none;
+}
+
+// show bulk action
+
+.topic-list-header tr th svg {
+  display: inline-block;
+}
+
+.sticky-header .topic-list-header {
+  position: static;
+}
+
+.topic-list > .topic-list-body > .topic-list-item.has-excerpt .star {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.bulk-buttons .btn {
+  padding: inherit;
+}
+
+// custom topic reply button styles
+
+.btn {
+  &:focus {
+    background-color: var(--tertiary-very-low);
+    &,
+    .d-icon {
+      color: var(--primary);
+    }
+  }
+}
+
+.admin-customize .current-style {
+  .edit-main-nav .nav-pills > li a.active,
+  .nav-pills li a.active {
+    color: var(--quaternary);
+  }
+}

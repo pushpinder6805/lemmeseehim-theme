@@ -1,0 +1,18 @@
+{{#each cardSettings as |cardSetting|}}
+	<div class="card-component__content">
+		<h1 class="card-component__title">
+			{{cardSetting.title}}
+		</h1>
+		<p class="card-component__description">
+			{{cardSetting.description}}
+		</p>
+		<a
+			class="card-component__button btn-primary btn"
+			type="button"
+			href="{{cardSetting.link}}"
+		>
+			{{cardSetting.button}}
+		</a>
+	</div>
+{{/each}}
+

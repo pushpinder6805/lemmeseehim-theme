@@ -1,0 +1,45 @@
+{
+  "name": "lemmeseehim",
+  "component": false,
+  "license_url": null,
+  "about_url": null,
+  "authors": null,
+  "theme_version": null,
+  "minimum_discourse_version": null,
+  "maximum_discourse_version": null,
+  "assets": {
+  },
+  "color_schemes": {
+    "Light": {
+      "primary": "415364",
+      "secondary": "ffffff",
+      "tertiary": "0033a1",
+      "quaternary": "cc27b0",
+      "header_background": "ffffff",
+      "header_primary": "415364",
+      "highlight": "54c0e8",
+      "danger": "e45735",
+      "success": "009900",
+      "love": "fa6c8d",
+      "selected": "e9e9e9",
+      "hover": "f2f2f2"
+    },
+    "Dark": {
+      "primary": "ffffff",
+      "secondary": "1f2122",
+      "tertiary": "7ecfee",
+      "quaternary": "df61ca",
+      "header_background": "1b1b1d",
+      "header_primary": "ffffff",
+      "highlight": "54c0e8",
+      "danger": "e45735",
+      "success": "009900",
+      "love": "fa6c8d",
+      "selected": "313131",
+      "hover": "2c2c2c"
+    }
+  },
+  "modifiers": {
+  },
+  "learn_more": "https://meta.discourse.org/t/beginners-guide-to-using-discourse-themes/91966"
+}

@@ -1,0 +1,27 @@
+{{#each categories as |category|}}
+	<table
+		class="category-list subcategory-list with-topics"
+		style={{category-color-variable category.color}}
+		parent-category="{{category.has_children}}"
+	>
+	<thead>
+		<tr>
+			<th class="parent-category">
+				<CategoryTitleLink @category={{category}} />
+				<span class="stat" title={{category.statTitle}}>{{html-safe category.stat}}</span>
+			</th>
+			<th class="topics">{{i18n "categories.topics"}}</th>
+			<th class="replies">{{i18n "replies"}}</th>
+			<th class="latest">{{i18n "categories.latest"}}</th>
+		</tr>
+	</thead>
+	<tbody aria-labelledby="categories-only-category">
+		{{! subcategory_list from global filters does not include children (unless specifically configured) }}
+		{{#each category.subcategory_list as |subCategory|}}
+			{{parent-category-row category=subCategory showTopics=true}}
+		{{else}}
+			{{parent-category-row category=category showTopics=true}}
+		{{/each}}
+	</tbody>
+  </table>
+{{/each}}

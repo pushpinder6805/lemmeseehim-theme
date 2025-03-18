@@ -1,0 +1,203 @@
+svg_icons: 
+  default: 'glasses|comments|book'
+  type: 'list'
+  list_type: 'compact'
+  
+card:
+  default: >-
+    []
+  description:
+    en: "Top cards, comprises of a title, description & button. Delete items to disable."
+  json_schema: >-
+    {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "button" : {
+            "type" : "string"
+          },
+          "link" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+    
+sidebar:
+    default: >-
+      []
+    description:
+      en: "Sidebar, comprises of a name, icon (optional) & link (optional) as well as a setting 'Is this a dropdown?' to have any section expanded & act as section title. Delete items to disable."
+    json_schema: >-
+      {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "is this a dropdown?": {
+              "type": "boolean",
+              "format": "checkbox"
+            },
+            "is this dropdown always open?": {
+              "options": {
+                "dependencies": {
+                  "is this a dropdown?": true
+                }
+              },
+              "type": "boolean",
+              "format": "checkbox"
+            },
+            "name": {
+              "type": "string"
+            },
+            "icon": {
+              "default": "glasses",
+              "type": "string"
+            },
+            
+            "link": {
+              "type": "string"
+            },
+            "external?": {
+              "options": {
+                "dependencies": {
+                  "link": true
+                }
+              },
+              "type": "boolean",
+              "format": "checkbox"
+            },
+            
+            "upper submenu": {
+              "options": {
+                "dependencies": {
+                  "is this a dropdown?": true
+                }
+              },
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "is this a dropdown?": {
+                    "type": "boolean",
+                    "format": "checkbox"
+                  },
+                  "is this dropdown always open?": {
+                    "options": {
+                      "dependencies": {
+                        "is this a dropdown?": true
+                      }
+                    },
+                    "type": "boolean",
+                    "format": "checkbox"
+                  },
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "icon" : {
+                    "type" : "string"
+                  },
+                  "link" : {
+                    "type" : "string",
+                    "format" : "url"
+                  },
+                  "external?": {
+                    "options": {
+                      "dependencies": {
+                        "link": true
+                      }
+                    },
+                    "type": "boolean",
+                    "format": "checkbox"
+                  },
+                  "middle submenu": {
+                    "options": {
+                      "dependencies": {
+                        "is this a dropdown?": true
+                      }
+                    },
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "is this a dropdown?": {
+                          "type": "boolean",
+                          "format": "checkbox"
+                        },
+                        "is this dropdown always open?": {
+                          "options": {
+                            "dependencies": {
+                              "is this a dropdown?": true
+                            }
+                          },
+                          "type": "boolean",
+                          "format": "checkbox"
+                        },
+                        "name" : {
+                          "type" : "string"
+                        },
+                        "icon" : {
+                          "type" : "string"
+                        },
+                        "link" : {
+                          "type" : "string",
+                          "format" : "url"
+                        },
+                        "external?": {
+                          "options": {
+                            "dependencies": {
+                              "link": true
+                            }
+                          },
+                          "type": "boolean",
+                          "format": "checkbox"
+                        },
+                        "lower submenu": {
+                          "options": {
+                            "dependencies": {
+                              "is this a dropdown?": true
+                            }
+                          },
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name" : {
+                                "type" : "string"
+                              },
+                              "icon" : {
+                                "type" : "string"
+                              },
+                              "link" : {
+                                "type" : "string",
+                                "format" : "url"
+                              },
+                              "external?": {
+                                "options": {
+                                  "dependencies": {
+                                    "link": true
+                                  }
+                                },
+                                "type": "boolean",
+                                "format": "checkbox"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+          } 
+        }
+      }
