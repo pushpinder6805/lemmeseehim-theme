@@ -7,8 +7,19 @@
 		<thead>
 			<tr>
 				<th class="parent-category">
-					<CategoryTitleLink @category={{category}} />
-					<span class="stat" title={{category.statTitle}}>{{html-safe category.stat}}</span>
+					<a class="category-title-link" href="/c/{{category.slug}}/{{category.id}}">
+						<div class="category-text-title">
+							{{#if category.icon}}
+								<span class="category-icon">
+									{{d-icon category.icon}}
+								</span>
+							{{/if}}
+							<span class="category-name">{{category.name}}</span>
+						</div>
+					</a>
+					<span class="stat" title="{{category.statTitle}}">
+						<span class="value">{{category.stat}}</span> / <span class="unit">week</span>
+					</span>
 				</th>
 				<th class="topics">{{i18n "categories.topics"}}</th>
 				<th class="replies">{{i18n "replies"}}</th>
@@ -18,9 +29,56 @@
 		<tbody aria-labelledby="categories-only-category">
 			{{! subcategory_list from global filters does not include children (unless specifically configured) }}
 			{{#each category.subcategory_list as |subCategory|}}
-				{{parent-category-row category=subCategory showTopics=true}}
-			{{else}}
-				{{parent-category-row category=category showTopics=true}}
+				<tr data-category-id="{{subCategory.id}}" class="{{if subCategory.description_excerpt "has-description" "no-description"}} {{if subCategory.uploaded_logo.url "has-logo" "no-logo"}}">
+					<td class="category" style={{category-color-variable subCategory.color}}>
+						<a class="enclosing-category-link" href="/c/{{subCategory.slug}}/{{subCategory.id}}">
+							<div class="category-text-title">
+								{{#if subCategory.icon}}
+									<span class="category-icon">
+										{{d-icon subCategory.icon}}
+									</span>
+								{{/if}}
+								<span class="category-name">{{subCategory.name}}</span>
+							</div>
+							{{#if subCategory.description_excerpt}}
+								<div class="category-description">
+									{{dir-span subCategory.description_excerpt}}
+								</div>
+							{{/if}}
+						</a>
+					</td>
+
+					<td class="topics">
+						<div title="{{subCategory.topic_count}}">
+							{{d-icon "comments"}}
+							<span class="number">{{subCategory.topic_count}}</span>
+						</div>
+					</td>
+
+					<td class="replies">
+						<div title="post count">
+							{{d-icon "reply"}}
+							<span class="number">{{subCategory.post_count}}</span>
+						</div>
+					</td>
+
+					<td class="latest">
+						{{#if subCategory.topics.length}}
+							{{#each subCategory.topics as |topic|}}
+								<div class="featured-topic">
+									<span class="categories-latest-topic-avatar">
+										<a href="/u/{{topic.last_poster.username}}" data-user-card="{{topic.last_poster.username}}">
+											{{avatar topic.last_poster imageSize="small"}}
+										</a>
+									</span>
+									<FeaturedTopic @topic={{topic}} />
+								</div>
+							{{/each}}
+						{{else}}
+							<li class="empty-topic"></li>
+						{{/if}}
+					</td>
+				</tr>
 			{{/each}}
 		</tbody>
 	</table>
