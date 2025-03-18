@@ -18,8 +18,9 @@
 						</div>
 					</a>
 					<span class="stat" title="{{category.statTitle}}">
-						<span class="value">{{category.stat}}</span> / <span class="unit">week</span>
-					</span>
+    {{html-safe category.stat}}
+</span>
+
 				</th>
 				<th class="topics">{{i18n "categories.topics"}}</th>
 				<th class="replies">{{i18n "replies"}}</th>
