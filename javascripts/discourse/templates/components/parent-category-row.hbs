@@ -1,9 +1,9 @@
-{{#unless isHidden}}
+{{#unless this.isHidden}}
 	{{plugin-outlet
 		name="category-list-above-each-category"
 		connectorTagName=""
 		tagName=""
-		args=(hash category=category)
+		outletArgs=(hash category=this.category)
 	}}
 	<tr
 		data-category-id={{this.category.id}}
@@ -19,15 +19,15 @@
 		<td
 			class="category
 				{{if this.category.subcategories "parent-category"}}
-				{{if isMuted "muted"}}
-				{{if noCategoryStyle "no-category-style"}}"
+				{{if this.isMuted "muted"}}
+				{{if this.noCategoryStyle "no-category-style"}}"
 			style={{category-color-variable this.category.color}}
 		>
 			<a
 				class="enclosing-category-link"
 				href="/c/{{this.category.parentCategory.slug}}/{{this.category.slug}}/{{this.category.id}}"
 			>
-				{{category-title-link category=category}}
+				{{category-title-link category=this.category}}
 				{{#if this.category.description_excerpt}}
 					<div class="category-description">
 						{{dir-span this.category.description_excerpt}}
@@ -41,7 +41,7 @@
 				{{d-icon "comments"}}
 				{{number this.category.topic_count}}
 			</div>
-			{{category-unread category=category tagName="div" class="unread-new"}}
+			{{category-unread category=this.category tagName="div" class="unread-new"}}
 		</td>
 		
 		<td class="replies">
@@ -50,7 +50,8 @@
 				{{number this.category.post_count}}
 			</div>
 		</td>
-		{{#if showTopics}}
+		
+		{{#if this.showTopics}}
 			<td class="latest">
 				{{#if this.category.topics.length}}
 					{{#each this.category.topics as |topic|}}
@@ -66,8 +67,8 @@
 						<FeaturedTopic @topic={{topic}} />
 					</div>
 					{{/each}}
-					{{else}}
-						<li class="empty-topic"></li>
+				{{else}}
+					<li class="empty-topic"></li>
 				{{/if}}
 			</td>
 		{{/if}}
